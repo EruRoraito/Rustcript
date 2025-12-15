@@ -20,7 +20,7 @@ Without Rustcript, developers would need to hardcode dynamic business logic, rul
 
 It is designed to be both secure and flexible, allowing developers to tailor its capabilities based on their needs. The basic version provides standard structured programming abilities, while an extended version can be compiled with access to I/O and OS-level APIs for external automation tasks.
 
-#### For more technical information, please refer to the [Language Manual](MANUAL.md).
+#### For more technical information, please refer to the [MANUAL.md](MANUAL.md).
 ---
 
 ## 2. Full Features
@@ -72,7 +72,7 @@ It is designed to be both secure and flexible, allowing developers to tailor its
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/rustcript.git
+    git clone https://github.com/Eng-AliKazemi/Rustcript.git
     cd rustcript
     ```
 
@@ -190,11 +190,13 @@ The codebase is organized as a library crate with a thin binary client, followin
 
 ---
 
-## 6. Compilation
+## 6. Compilation & Integration
 
-`Rustcript` is designed to be embedded. Here are the primary methods for compiling and integrating it into your own applications.
+`Rustcript` is fundamentally a library crate, designed to be embedded as a scripting engine within a larger host application. While a standalone interpreter binary is provided for testing and direct script execution, the primary and most powerful use case is integrating the `rustcript` crate into the projects.
 
-### Method 1: Direct Integration with Rust Projects (Recommended)
+There are two primary methods for integrating the `Rustcript` library:
+
+### Method 1: Direct Integration via Cargo (Recommended for Rust Projects)
 
 The easiest and most robust way to use `Rustcript` in another Rust project is to add it as a local `path` dependency in your project's `Cargo.toml`. This allows Cargo to manage the compilation process, ensuring that compiler versions, flags, and dependencies are perfectly aligned.
 
@@ -273,14 +275,14 @@ To accelerate development and enable automated script generation, this project i
 
 #### [Click here to view the AI Instruction Manual](AI_INSTRUCTIONS.md)
 
-This file, `AI_INSTRUCTIONS.md`, is a single-source-of-truth document that teaches an AI to become an expert `Rustcript` developer.
+The, `AI_INSTRUCTIONS.md`, is a single-source-of-truth document that teaches an AI to become an expert `Rustcript` developer.
 
 ### Features for AI Integration
 *   **System Prompting & Persona:** The file begins with a system prompt that primes the AI to act as a specialist in the `Rustcript` language and its interpreter.
 *   **Deep Architectural Insights:** It goes beyond the public manual, explaining the *internal logic* of the interpreter—how the parser builds an AST, how the `jump_map` optimizes control flow, and how the state machine manages scopes and stacks. This context allows the AI to reason about the code from first principles.
 *   **Formal Grammar & API Reference:** The complete language syntax and standard library are documented in a structured, machine-readable format, minimizing ambiguity.
 *   **Few-Shot Learning Zone:** The document contains a rich set of examples formatted as `Task -> Thought Process -> Correct Code`. This teaches the AI not just *what* the correct code is, but *how* to reason about a problem and arrive at the solution, a technique derived from Chain-of-Thought prompting.
-*   **Anti-Pattern Database:** A dedicated section lists common mistakes and invalid syntax patterns, training the AI to avoid them proactively.
+*   **Anti-Pattern Mitigations:** A dedicated section lists common mistakes and invalid syntax patterns, training the AI to avoid them proactively.
 
 ### Use Case
 By providing `AI_INSTRUCTIONS.md` as context to a capable LLM, developers can:
@@ -291,4 +293,105 @@ By providing `AI_INSTRUCTIONS.md` as context to a capable LLM, developers can:
 
 This approach turns a modern AI into a powerful pair-programmer, fully versed in the specifics and best practices of the Rustcript language.
 
+---
 
+## 9. Project Philosophy & Future Roadmap
+
+### From a Personal Tool to an Open-Source Project
+
+This project represents the first public version of Rustcript. It began as a practical solution to add dynamic flexibility to my own Rust applications, allowing me to modify logic and configurations without the friction of a full re-compilation for every minor change.
+
+During its development, Rustcript evolved significantly. What started as a simple need for dynamic scripting grew into a robust tool with a comprehensive security model, a full-fledged standard library, and a powerful Rust interoperability layer, doing much more than its initial scope required. The result is a powerful, secure, and resilient interpreter that is already well-suited for its primary use cases.
+
+### The Future is Community-Driven
+
+While the current version is stable and feature-rich, the goal is to see Rustcript grow to serve a wider range of applications and needs in the future. The roadmap will be heavily influenced by the community.
+
+We strongly encourage users and contributors to help shape the future of Rustcript. If you have an idea for a new feature, a suggestion for improving the language syntax, or have found a bug, please open a GitHub Issue. Your feedback is crucial for this next phase of development.
+
+**Have a feature request? You can open a new issue here:**
+[**https://github.com/Eng-AliKazemi/Rustcript/issues/new**](https://github.com/Eng-AliKazemi/Rustcript/issues/new)
+
+---
+
+## 10. How to Contribute
+
+We welcome contributions from the community! Whether it's reporting a bug, improving documentation, suggesting a new feature, or writing code, your help is greatly appreciated in making Rustcript better for everyone.
+
+### Types of Contributions We're Looking For
+
+*   **Code Contributions:** Fixing bugs or implementing new language features, standard library functions, or interpreter optimizations.
+*   **Documentation:** Improving the [`README.md`](README.md), the [`MANUAL.md`](MANUAL.md), the [`AI_INSTRUCTIONS.md`](AI_INSTRUCTIONS.md), or inline code comments.*   **Bug Reports & Feature Requests:** Submitting detailed issues and well-thought-out ideas in the [Issues tab](https://github.com/Eng-AliKazemi/Rustcript/issues/new).
+
+### General Contribution Workflow
+
+To ensure a smooth and collaborative process for code changes, we follow a simple guideline:
+
+**➡️ Please open a GitHub Issue to discuss your idea *before* starting to write code.**
+
+This approach helps us:
+-   **Align on Goals:** Ensure your proposed change fits with the project's vision and roadmap.
+-   **Avoid Duplicate Work:** Check if someone else is already working on a similar feature.
+-   **Refine the Technical Approach:** Discuss the best way to implement your idea and get early feedback.
+-   **Streamline the Review Process:** Make the pull request review much faster and more straightforward.
+
+**Workflow Steps:**
+
+1.  **Start a Discussion:** Go to the [**Discussions tab**](https://github.com/Eng-AliKazemi/Rustcript/discussions) and open a new topic. Clearly describe the bug you want to fix or the feature you want to add. For new features, please outline the proposal and its use case. We'll use the discussion to refine the scope and plan before an issue is created.
+
+2.  **Fork & Branch:** Once the idea is discussed and agreed upon, fork the repository and create a new branch for your work. A good branch name is descriptive. **Please always work on a feature branch, not on your fork's `master` branch.** This keeps your main branch clean and makes the PR process smoother.
+    ```bash
+    # Create a new branch from the 'development' branch
+    git checkout development
+    git pull origin development
+    git checkout -b feature/your-amazing-feature
+    ```
+
+3.  **Develop & Test:** Make your changes, adhering to the project's coding style and Rust best practices. **Crucially, ensure you test your changes thoroughly.**
+
+4.  **Submit a Pull Request:** Push your feature branch to your fork and open a pull request against the **`development`** branch of the `Eng-AliKazemi/Rustcript` repository. Pull requests should always come from your feature branch, not your `master` branch. Please provide a clear description of your changes in the PR and link it to the original discussion or issue.
+
+We look forward to collaborating with you
+
+---
+
+## 11. License
+
+This project is licensed under the **Mozilla Public License 2.0 (MPL-2.0)**.
+
+You are free to use, study, share, and modify the software. If you modify any MPL-licensed files, you must make the source code of those specific files available. You may combine this software with proprietary code in a larger project without needing to release the source code of your other components.
+
+### Additional Attribution Requirement
+In accordance with MPL 2.0, all distributions of this software in **binary and source form** must include the following user-visible attribution in at least one of the following locations:
+- In the README
+- On a startup/splash screen
+- In an "About" or "Acknowledgements" dialog box
+- In the primary documentation or "Help" menu
+- As a footer on a command-line tool's initial output
+
+**Required attribution text:**
+> Powered by Rustcript from https://github.com/Eng-AliKazemi/Rustcript.
+
+For the full license text, please see the [`LICENSE`](LICENSE) file.
+
+---
+
+## 12. Code of Conduct
+
+This project and everyone participating in it is governed by the [Ruscript Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+---
+
+## 13. Acknowledgments
+
+The development of Rustcript relies on the exceptional work of the open-source community. We extend our deepest gratitude to the developers behind the incredible Rust crates that made this interpreter possible, including:
+
+For a complete list of third-party dependencies and their versions, please see the `Cargo.toml` file.
+
+---
+
+## 14. Contact
+
+To get in touch with the developer, please use the following link:
+
+<a href="https://linkedin.com/in/e-a-k" target="_blank"><img src="https://img.shields.io/badge/Connect-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=555" alt="Connect on LinkedIn"/></a>
