@@ -1,0 +1,23 @@
+# File Version: 1.1.0
+# /examples/22_safety_limit.rc
+# Execution: ./target/release/rustcript --unlimited examples/22_safety_limit.rc
+# Note: This script is EXPECTED to fail with an "Execution Limit Exceeded" error.
+
+print '--- 22 SAFETY LIMIT TEST ---'
+print 'This script attempts to run an infinite loop.'
+print 'The interpreter should catch this and abort.'
+
+counter = 0
+
+# Infinite Loop
+while true [
+    counter += 1
+
+    # Print only every 1000 steps to avoid spamming console
+    mod counter % 1000
+    if mod == 0 [
+        print 'Loop iteration: {counter}'
+    ]
+]
+
+print 'ERROR: This line should never be reached.'

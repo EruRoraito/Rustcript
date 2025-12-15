@@ -1,0 +1,33 @@
+# File Version: 1.5.0
+# /examples/06_match.rc
+# Execution: ./target/release/rustcript examples/06_match.rc
+
+print '--- 06 MATCH ---'
+
+status = 200
+
+print 'Checking Status 200 (Integer match):'
+match status [
+    case 200 [
+        print '>> OK'
+    ]
+    case 404 [
+        print '>> Not Found'
+    ]
+    default [
+        print '>> Unknown Status'
+    ]
+]
+
+fruit = 'apple'
+print 'Checking Fruit \'apple\' (String match):'
+match fruit [
+    case 'banana' [
+        print '>> Yellow'
+    ]
+    case 'apple' [
+        print '>> Red'
+    ]
+]
+
+print '--- END ---'

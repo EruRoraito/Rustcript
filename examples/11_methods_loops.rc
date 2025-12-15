@@ -1,0 +1,50 @@
+# File Version: 1.5.0
+# /examples/11_methods_loops.rc
+# Execution: ./target/release/rustcript examples/11_methods_loops.rc
+
+print '--- 11 METHODS & LOOPS ---'
+
+# 1. Vector Methods
+stack = {10, 20}
+print 'Initial Stack: {stack}'
+
+print 'Pushing 30...'
+method stack.push(30)
+print 'Stack: {stack}'
+
+method popped_val = stack.pop()
+print 'Popped: {popped_val}'
+print 'Stack after pop: {stack}'
+
+method len = stack.len()
+print 'Length: {len}'
+
+# 2. Map Methods
+inventory = {'wood': 5, 'stone': 10}
+print 'Inventory: {inventory}'
+
+method inventory.insert('iron', 3)
+print 'Inventory after insert: {inventory}'
+
+method has_gold = inventory.contains('gold')
+print 'Has Gold? {has_gold}'
+
+method keys = inventory.keys()
+print 'Inventory Keys: {keys}'
+
+# 3. Foreach Loop (Vector)
+print '--- FOREACH VECTOR ---'
+nums = {1, 2, 3}
+foreach n in nums [
+    print 'Number: {n}'
+]
+
+# 4. Foreach Loop (Map)
+# Iterates over keys
+print '--- FOREACH MAP KEYS ---'
+foreach key in inventory [
+    method val = inventory.get(key)
+    print 'Item: {key}, Qty: {val}'
+]
+
+print '--- END ---'

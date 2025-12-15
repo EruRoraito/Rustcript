@@ -1,0 +1,44 @@
+# File Version: 1.4.0
+# /examples/09_scopes.rc
+# Execution: ./target/release/rustcript examples/09_scopes.rc
+
+print '--- 09 SCOPES ---'
+
+# 1. Define Global with keyword
+global g_score = 100
+print 'Main Start: Global Score is {g_score}'
+
+# 2. Define Local in Main with keyword
+var l_temp = 50
+print 'Main Start: Local Temp is {l_temp}'
+
+call subroutine
+
+print 'Main End: Global Score is {g_score} (Should be 1000)'
+print 'Main End: Local Temp is {l_temp} (Should be 50, unaffected by sub)'
+
+goto end
+
+label subroutine
+    print '  >> Entering Subroutine'
+
+    # Reading global works
+    print '  >> Inside Sub: Can read g_score: {g_score}'
+
+    # Writing to global (implicit calc)
+    g_score = 1000
+    print '  >> Inside Sub: Modified g_score to 1000'
+
+    # Creating a shadow variable (implicit calc in new scope)
+    l_temp = 999
+    print '  >> Inside Sub: Created local l_temp: {l_temp}'
+
+    # Explicit local
+    var private_val = 123
+    print '  >> Inside Sub: Private val: {private_val}'
+
+    print '  >> Exiting Subroutine'
+    return
+
+label end
+print '--- END ---'

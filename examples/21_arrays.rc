@@ -1,0 +1,68 @@
+# File Version: 1.1.0
+# /examples/21_arrays.rc
+# Execution: ./target/release/rustcript examples/21_arrays.rc
+
+print '--- 21 ARRAY SYNTAX SUGAR ---'
+
+# 1. Direct Assignment
+print '1. Direct Assignment:'
+list = {10, 20, 30}
+print '   Original: {list}'
+
+list[0] = 99
+print '   Updated [0]=99: {list}'
+
+list[1] = 88
+print '   Updated [1]=88: {list}'
+
+# 2. Variable Index
+print ' '
+print '2. Variable Indexing:'
+idx = 2
+val = list[idx]
+print '   Read list[{idx}]: {val}'
+
+# 3. Maps
+print ' '
+print '3. Map Access:'
+user = {'name': 'Alice', 'score': 100}
+print '   User: {user}'
+
+print '   Writing user["score"]...'
+user['score'] = 200
+print '   Updated: {user}'
+
+print '   Reading user["name"]...'
+name = user['name']
+print '   Name is: {name}'
+
+# 4. Nested Access
+print ' '
+print '4. Nested Access:'
+matrix = {{1, 2}, {3, 4}}
+print '   Matrix: {matrix}'
+
+# Read matrix[1][0] -> 3
+val = matrix[1][0]
+print '   matrix[1][0]: {val}'
+
+# Write matrix[0][1] -> 9
+print '   Writing matrix[0][1] = 9 ...'
+matrix[0][1] = 9
+print '   Matrix: {matrix}'
+
+# 5. Mixed Dot and Bracket
+print ' '
+print '5. Mixed Syntax:'
+data = {'users': [{'id': 1}, {'id': 2}]}
+print '   Data: {data}'
+
+# data.users[1].id
+id = data.users[1].id
+print '   data.users[1].id: {id}'
+
+print '   Updating data.users[0].id = 999 ...'
+data.users[0].id = 999
+print '   Data: {data}'
+
+print '--- END ---'

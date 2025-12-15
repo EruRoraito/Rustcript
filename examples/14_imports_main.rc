@@ -1,0 +1,24 @@
+# File Version: 1.4.0
+# /examples/14_imports_main.rc
+# Execution: ./target/release/rustcript examples/14_imports_main.rc
+
+print '--- 14 IMPORTS TEST ---'
+
+# 1. Import the library
+print 'Step 1: Importing library...'
+import '14_imports_lib.rc'
+
+# 2. Access a Global variable defined in the library
+print 'Step 2: Accessing Global Variable...'
+print 'Current PI Value: {MATH_PI}'
+
+# 3. Call a function defined in the library
+print 'Step 3: Calling Library Function...'
+result = calculate_circle_area(10)
+print 'Area of circle (r=10): {result}'
+
+# 4. Prove Scope Persistence
+MATH_PI = 3
+print 'Step 4: Modified Global PI to: {MATH_PI}'
+
+print '--- END ---'

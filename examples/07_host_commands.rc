@@ -1,0 +1,14 @@
+# File Version: 1.3.0
+# /examples/07_host_commands.rc
+# Execution: ./target/release/rustcript examples/07_host_commands.rc
+
+print '--- 07 HOST COMMANDS ---'
+
+print 'Testing \'beep\' command...'
+exec beep
+
+print 'Testing \'wait\' command (Waiting 1 second)...'
+exec wait 1000
+
+print 'Done waiting.'
+print '--- END ---'

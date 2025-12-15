@@ -1,0 +1,45 @@
+# File Version: 1.1.0
+# /examples/23_file_io.rc
+# Execution: ./target/release/rustcript --sandbox ./examples examples/23_file_io.rc
+
+print '--- 23 SANDBOXED FILE I/O ---'
+
+filename = 'test_output.txt'
+
+# 1. Write File
+print '1. Writing to {filename}...'
+content = 'Hello from rustcript!'
+method io.write(filename, content)
+
+# 2. Check Existence
+print '2. Checking existence...'
+method exists = io.exists(filename)
+print '   Exists? {exists}'
+
+# 3. Read File
+print '3. Reading file...'
+method read_back = io.read(filename)
+print '   Content: {read_back}'
+
+# 4. Append
+print '4. Appending data...'
+method io.append(filename, '\nAppended Line.')
+method updated = io.read(filename)
+print '   Updated Content:\n{updated}'
+
+# 5. Security Test (Path Traversal)
+print '5. Attempting Security Breach (../Cargo.toml)...'
+try [
+    method io.read('../Cargo.toml')
+    print '>> FAILURE: Managed to read outside sandbox!'
+] catch [
+    print '>> SUCCESS: Security violation caught: {LAST_ERROR}'
+]
+
+# 6. Cleanup
+print '6. Cleaning up...'
+method io.delete(filename)
+method still_exists = io.exists(filename)
+print '   Exists after delete? {still_exists}'
+
+print '--- END ---'

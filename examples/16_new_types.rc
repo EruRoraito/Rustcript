@@ -1,0 +1,45 @@
+# File Version: 1.4.0
+# /examples/16_new_types.rc
+# Execution: ./target/release/rustcript examples/16_new_types.rc
+
+print '--- 16 NEW TYPES & SYNTAX ---'
+
+# 1. Single Quoted Strings
+greeting = 'Hello, Single Quotes!'
+print '{greeting}'
+
+# 2. Bare Numerical Values
+int_num = 42
+float_num = 3.14159
+
+print 'Bare Integer: {int_num}'
+print 'Bare Float: {float_num}'
+
+# Arithmetic with bare numbers
+sum int_num + 100
+print '42 + 100 = {sum}'
+
+# 3. Triple Quoted Multi-line Strings
+story = '''
+Once upon a time,
+in a terminal far, far away,
+there was a script that spanned
+multiple lines.
+'''
+
+print '--- Story Output ---'
+print '{story}'
+print '--------------------'
+
+# 4. Float Error Handling (Safety)
+print 'Testing Float Safety...'
+
+# 4a. Overflow Protection
+huge_val = 1e999
+print 'Overflow Input (1e999) -> Clamped: {huge_val}'
+
+# 4b. Invalid Float Structure
+bad_num = '12.34.56'
+print 'Invalid Float treated as String: {bad_num}'
+
+print '--- END ---'

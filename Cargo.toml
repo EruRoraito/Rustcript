@@ -1,0 +1,38 @@
+# File Version: 1.6.0
+# /Cargo.toml
+
+[package]
+name = "rustcript"
+version = "0.1.0"
+edition = "2021"
+description = "A sophisticated, text-based scripting language interpreter written in native Rust."
+
+[features]
+# By default, no unsafe features are enabled.
+default = []
+
+# Enable this feature to allow the script to execute host OS commands (e.g., os.exec).
+# WARNING: This allows arbitrary command execution. Only enable if you trust the scripts.
+os_access = []
+
+# Enable sandboxed File I/O (io.read, io.write).
+# Scripts are restricted to the configured sandbox directory.
+file_io = []
+
+[dependencies]
+# Required for Date/Time formatting
+chrono = "0.4"
+# Required for Random Number Generation
+rand = "0.9.2"
+# Required for Regular Expressions
+regex = "1"
+# Required for JSON Parsing/Stringifying
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+opt-level = "z"     # Optimize for size ('z' is more aggressive than 's')
+lto = true          # Enable Link Time Optimization (removes dead code across crates)
+codegen-units = 1   # Compile as a single unit (maximizes optimization, slower build time)
+panic = "abort"     # Removes stack unwinding info (saves space, but panics crash immediately)
+strip = true        # Automatically strip symbols from the binary (requires Rust 1.59+)

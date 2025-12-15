@@ -1,0 +1,94 @@
+# File Version: 1.5.0
+# /examples/13_functions.rc
+# Execution: ./target/release/rustcript examples/13_functions.rc
+
+print '--- 13 FUNCTIONS ---'
+
+# ==========================================
+# 1. BASIC FUNCTION & ARGUMENTS
+# ==========================================
+print '1. Defining and calling \'greet\'...'
+
+function greet name [
+    print '>> Hello, {name}!'
+]
+
+# Call with a literal string
+greet('rustcript')
+
+# Call with a variable
+user = 'Developer'
+greet(user)
+
+# ==========================================
+# 2. RETURN VALUES
+# ==========================================
+print '2. Return values (Math)...'
+
+function add_numbers a b [
+    sum a + b
+    return sum
+]
+
+result = add_numbers(10, 25)
+print '10 + 25 = {result}'
+
+# ==========================================
+# 3. SCOPE ISOLATION (Shadowing)
+# ==========================================
+print '3. Scope Isolation...'
+
+x = 999
+print 'Global X before call: {x}'
+
+function scope_test [
+    # This 'var' creates a local variable 'x', shadowing the global 'x'
+    var x = 1
+    print '>> Inside function, Local X is: {x}'
+]
+
+scope_test()
+print 'Global X after call: {x} (Should remain 999)'
+
+# ==========================================
+# 4. RECURSION (Factorial)
+# ==========================================
+print '4. Recursion (Factorial of 5)...'
+
+function factorial n [
+    # Base case
+    if n <= 1 [
+        return 1
+    ]
+
+    # Recursive step
+    prev_n n - 1
+    prev_res = factorial(prev_n)
+
+    result n * prev_res
+    return result
+]
+
+f5 = factorial(5)
+print '5! = {f5}'
+
+# ==========================================
+# 5. COMPLEX TYPES AS ARGUMENTS
+# ==========================================
+print '5. Passing Vectors...'
+
+function sum_vector vec [
+    var total = 0
+    foreach num in vec [
+        total += num
+    ]
+    return total
+]
+
+numbers = {10, 20, 30, 40}
+vec_sum = sum_vector(numbers)
+
+print 'Vector: {numbers}'
+print 'Sum: {vec_sum}'
+
+print '--- END ---'

@@ -1,0 +1,19 @@
+# File Version: 1.5.0
+# /examples/01_basics.rc
+# Execution: ./target/release/rustcript examples/01_basics.rc
+
+print '--- 01 BASICS ---'
+
+# 1. Variable Assignment (Natural Syntax)
+player_name = 'Hero'
+print 'Welcome, {player_name}!'
+
+# 2. Input
+print 'Please enter your age:'
+input age
+
+# 3. Variable Interpolation
+print 'You entered: {age}'
+print 'Type inference test: {age} is saved as a typed value.'
+
+print '--- END ---'

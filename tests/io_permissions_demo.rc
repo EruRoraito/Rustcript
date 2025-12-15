@@ -1,0 +1,35 @@
+# File Version: 1.1.0
+# /tests/io_permissions_demo.rc
+
+print '--- IO PERMISSIONS TEST ---'
+filename = 'test_perm_file.txt'
+content = 'This file verifies write permissions.'
+
+# 1. Test Write
+print '[1] Attempting WRITE...'
+try [
+    method io.write(filename, content)
+    print '    >> SUCCESS: File written.'
+] catch [
+    print '    >> FAILED: {LAST_ERROR}'
+]
+
+# 2. Test Read
+print '[2] Attempting READ...'
+try [
+    method data = io.read(filename)
+    print '    >> SUCCESS: Read content: \'{data}\''
+] catch [
+    print '    >> FAILED: {LAST_ERROR}'
+]
+
+# 3. Test Delete
+print '[3] Attempting DELETE...'
+try [
+    method io.delete(filename)
+    print '    >> SUCCESS: File deleted.'
+] catch [
+    print '    >> FAILED: {LAST_ERROR}'
+]
+
+print '--- END ---'

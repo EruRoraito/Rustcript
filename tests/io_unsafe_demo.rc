@@ -1,0 +1,18 @@
+# File Version: 1.1.0
+# /tests/io_unsafe_demo.rc
+
+print '--- UNSAFE SANDBOX BYPASS TEST ---'
+
+# Attempt to read a file OUTSIDE the sandbox (assuming sandbox is ./tests or similar)
+# We try to read the project's Cargo.toml located in the root
+target_file = '../Cargo.toml'
+
+print 'Attempting to read: {target_file}'
+
+try [
+    method content = io.read(target_file)
+    method len = content.len()
+    print '>> SUCCESS: Read {len} bytes from parent directory!'
+] catch [
+    print '>> FAILED: {LAST_ERROR}'
+]

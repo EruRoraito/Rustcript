@@ -1,0 +1,75 @@
+# File Version: 1.4.0
+# /examples/17_string_manipulation.rc
+# Execution: ./target/release/rustcript examples/17_string_manipulation.rc
+
+print '--- 17 STRING MANIPULATION ---'
+
+# 1. Basic Casing
+print '1. Case Conversion:'
+original = 'rustcript Interpreter'
+method upper = original.to_upper()
+method lower = original.to_lower()
+
+print 'Original: {original}'
+print 'Upper:    {upper}'
+print 'Lower:    {lower}'
+
+# 2. Replacement
+print '2. Replace:'
+text = 'I like apples and apples.'
+method replaced = text.replace('apples', 'oranges')
+print 'Before: {text}'
+print 'After:  {replaced}'
+
+# 3. Trimming
+print '3. Trimming:'
+messy = '   padded text   '
+method clean = messy.trim()
+print 'Messy: \'{messy}\''
+print 'Clean: \'{clean}\''
+
+# 4. Inspection
+print '4. Inspection:'
+filename = 'script.rc'
+method is_rc = filename.ends_with('.rc')
+method has_sc = filename.contains('sc')
+method idx = filename.index_of('ip')
+
+print 'File: {filename}'
+print 'Ends with .rc? {is_rc}'
+print 'Contains \'sc\'? {has_sc}'
+print 'Index of \'ip\': {idx}'
+
+# 5. Slicing (Substring)
+print '5. Substring:'
+lang = 'rustcript'
+method sub = lang.substring(0, 4)
+print 'First 4 chars of {lang}: {sub}'
+
+# 6. Splitting (To Vector)
+print '6. Splitting:'
+csv_data = 'apple,banana,cherry'
+method fruits = csv_data.split(',')
+print 'CSV: {csv_data}'
+
+method v_len = fruits.len()
+print 'Vector Size: {v_len}'
+print 'Item 1: {fruits.1}'
+
+foreach f in fruits [
+    print ' - Fruit: {f}'
+]
+
+# 7. Joining (Vector back to String)
+print '7. Joining:'
+method rejoined = fruits.join(' | ')
+print 'Rejoined: {rejoined}'
+
+# 8. Type Conversion (Parsing)
+print '8. Explicit Parsing:'
+str_num = '123'
+method int_val = str_num.to_int()
+math_res int_val + 100
+print '123 (string) -> int + 100 = {math_res}'
+
+print '--- END ---'

@@ -1,0 +1,78 @@
+# File Version: 1.4.0
+# /examples/18_math_rand_regex.rc
+# Execution: ./target/release/rustcript examples/18_math_rand_regex.rc
+
+print '--- 18 MATH, RANDOM, REGEX ---'
+
+# ==========================================
+# 1. MATH MODULE
+# ==========================================
+print '1. Math Module'
+
+method pi = math.pi()
+print 'PI: {pi}'
+
+method root = math.sqrt(25)
+print 'Sqrt(25): {root}'
+
+method pow_val = math.pow(2, 8)
+print '2^8: {pow_val}'
+
+method neg_val = math.abs(-50.5)
+print 'Abs(-50.5): {neg_val}'
+
+method rounded = math.round(3.6)
+print 'Round(3.6): {rounded}'
+
+# ==========================================
+# 2. RANDOM MODULE
+# ==========================================
+print ' '
+print '2. Random Module'
+
+method r_int = rand.int(1, 100)
+print 'Random Int (1-100): {r_int}'
+
+method r_float = rand.float()
+print 'Random Float (0.0-1.0): {r_float}'
+
+method r_bool = rand.bool()
+print 'Random Bool: {r_bool}'
+
+# Shuffle Vector
+deck = {'Ace', 'King', 'Queen', 'Jack', 10}
+print 'Original Deck: {deck}'
+method deck.shuffle()
+print 'Shuffled Deck: {deck}'
+
+# ==========================================
+# 3. REGEX (Pattern Matching)
+# ==========================================
+print ' '
+print '3. Regex Support'
+
+email = 'user@example.com'
+bad_email = 'user_at_example_dot_com'
+
+# Pattern: Basic Email Regex
+pattern = '^[\w\.-]+@[\w\.-]+\.\w+$'
+
+method valid_1 = email.is_match(pattern)
+method valid_2 = bad_email.is_match(pattern)
+
+print 'Is \'{email}\' valid? {valid_1}'
+print 'Is \'{bad_email}\' valid? {valid_2}'
+
+# Extraction
+logs = 'Error: 404, Error: 500, Info: 200'
+# Extract all error codes
+method errors = logs.find_all('Error: \d+')
+print 'Found Errors: {errors}'
+
+# Replacement
+text = 'The color is red.'
+method new_text = text.regex_replace('red', 'blue')
+print 'Original: {text}'
+print 'Replaced: {new_text}'
+
+print '--- END ---'

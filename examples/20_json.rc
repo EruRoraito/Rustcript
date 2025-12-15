@@ -1,0 +1,45 @@
+# File Version: 1.1.0
+# /examples/20_json.rc
+# Execution: ./target/release/rustcript examples/20_json.rc
+
+print '--- 20 JSON SUPPORT ---'
+
+# 1. Parsing JSON
+print '1. Parsing JSON String:'
+json_str = '{"name": "Alice", "age": 25, "skills": ["Rust", "Python"], "is_admin": false}'
+print '   Raw JSON: {json_str}'
+
+method data = json.parse(json_str)
+
+print '   Parsed Object: {data}'
+print '   Access Name:   {data.name}'
+print '   Access Skill 0: {data.skills.0}'
+
+# 2. Modifying Data
+print ' '
+print '2. Modifying Data:'
+data.age = 26
+method data.skills.push('Java')
+print '   Modified Object: {data}'
+
+# 3. Stringify (Compact)
+print ' '
+print '3. Stringify (Compact):'
+method compact = json.stringify(data)
+print '   Output: {compact}'
+
+# 4. Stringify (Pretty)
+print ' '
+print '4. Stringify (Pretty):'
+method pretty = json.stringify(data, true)
+print '   Output:\n{pretty}'
+
+# 5. Handling Dates (ISO 8601)
+print ' '
+print '5. Time Serialization:'
+time now
+data = {'event': 'login', 'timestamp': now}
+method json_time = json.stringify(data)
+print '   Time Object: {json_time}'
+
+print '--- END ---'

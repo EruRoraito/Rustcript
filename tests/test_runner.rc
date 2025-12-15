@@ -1,0 +1,119 @@
+# File Version: 2.0.0
+# /tests/test_runner.rc
+# Execution:
+# 1. Build: cargo build --release --features "os_access file_io"
+# 2. Run:   ./target/release/rustcript tests/test_runner.rc
+
+print '--- AUTOMATED TEST RUNNER ---'
+
+# 1. Define Empty Vector
+tests = {}
+
+# 2. Populate Tests (One by one due to parser limits)
+method tests.push('examples/01_basics.rc')
+method tests.push('examples/02_math_and_types.rc')
+method tests.push('examples/03_legacy_flow.rc')
+method tests.push('examples/04_structured_logic.rc')
+method tests.push('examples/05_loops.rc')
+method tests.push('examples/06_match.rc')
+method tests.push('examples/07_host_commands.rc')
+# Skipping 08_guessing_game.rc (interactive)
+method tests.push('examples/09_scopes.rc')
+method tests.push('examples/10_complex_types.rc')
+method tests.push('examples/11_methods_loops.rc')
+method tests.push('examples/12_try_catch.rc')
+method tests.push('examples/13_functions.rc')
+method tests.push('examples/14_imports_main.rc')
+method tests.push('examples/15_datetime_vec_opt.rc')
+method tests.push('examples/16_new_types.rc')
+method tests.push('examples/17_string_manipulation.rc')
+method tests.push('examples/18_math_rand_regex.rc')
+method tests.push('examples/19_modules_main.rc')
+method tests.push('examples/20_json.rc')
+method tests.push('examples/21_arrays.rc')
+# Safety Test (Expected to fail)
+method tests.push('examples/22_safety_limit.rc')
+# File I/O Test (Requires --sandbox AND permissions)
+method tests.push('examples/23_file_io.rc')
+# First-Class Functions Test
+method tests.push('examples/24_first_class_funcs.rc')
+
+# 3. Setup Counters
+passed = 0
+failed = 0
+total = 0
+
+# 4. Configuration
+# Updated binary name to snake_case matching Cargo.toml
+binary = 'target/release/rustcript.exe'
+sep = ' '
+
+# OPTION: Specify arguments applied to ALL tests here
+# e.g., global_args = '--unlimited'
+global_args = ''
+
+# 5. Execution Loop
+foreach test_file in tests [
+    total += 1
+
+    # Check for specific flags needed
+    method is_sandbox = test_file.contains('23_file_io')
+    method is_safety = test_file.contains('22_safety_limit')
+
+    # Start building command: "binary "
+    cmd binary + sep
+
+    # Add Global Args if present
+    if global_args != '' [
+        # Check conflicts (Safety test shouldn't be unlimited if testing limits)
+        if is_safety && global_args == '--unlimited' [
+            # Skip adding unlimited to safety test
+        ] else [
+            step1 cmd + global_args
+            cmd step1 + sep
+        ]
+    ]
+
+    # Add Test-Specific Flags
+    if is_sandbox [
+        # Grant all permissions for the I/O test
+        step2 cmd + '--allow-read --allow-write --allow-delete --sandbox ./examples '
+        cmd step2 + test_file
+    ] else [
+        cmd cmd + test_file
+    ]
+
+    print '[TEST] Running {test_file} ...'
+
+    # Run sub-process via the new OS module
+    method exit_code = os.exec(cmd)
+
+    # Special logic for the safety test which is EXPECTED to fail (non-zero exit)
+    if is_safety [
+        if exit_code != 0 [
+            print '   -> PASS (Expected Failure)'
+            passed += 1
+        ] else [
+            print '   -> FAIL (Expected Failure but got Success)'
+            failed += 1
+        ]
+    ] else [
+        if exit_code == 0 [
+            print '   -> PASS'
+            passed += 1
+        ] else [
+            print '   -> FAIL (Exit Code: {exit_code})'
+            failed += 1
+        ]
+    ]
+]
+
+# 6. Summary
+print '-----------------------------'
+print 'Summary: {passed} / {total} Passed.'
+
+if failed > 0 [
+    print 'RESULT: FAILURE'
+] else [
+    print 'RESULT: SUCCESS'
+]

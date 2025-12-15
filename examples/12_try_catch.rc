@@ -1,0 +1,51 @@
+# File Version: 1.4.0
+# /examples/12_try_catch.rc
+# Execution: ./target/release/rustcript examples/12_try_catch.rc
+
+print '--- 12 TRY / CATCH ---'
+
+vec = {1, 2}
+
+print '1. Attempting invalid access (Index 5)...'
+
+try [
+    # This will fail with 'Property not found'
+    val = vec.5
+    print 'Success! Val is {val}'
+] catch [
+    print '>> CAUGHT ERROR: {LAST_ERROR}'
+]
+
+print '2. Continuing execution...'
+
+try [
+    print 'Attempting valid access...'
+    val = vec.0
+    print '>> Success! Val is {val}'
+] catch [
+    print '>> This should not print.'
+]
+
+print '3. Nested Try/Catch'
+
+try [
+    print 'Outer Try...'
+    try [
+        print 'Inner Try... forcing error'
+        method vec.pop()
+        method vec.pop()
+        method vec.pop() # Empty pop error
+    ] catch [
+        print '>> Inner Catch: {LAST_ERROR}'
+    ]
+    print 'Outer Try continues...'
+
+    # Force another error in outer (Division by zero)
+    x 10 / 0
+    print 'Should not see this.'
+
+] catch [
+    print '>> Outer Catch: {LAST_ERROR}'
+]
+
+print '--- END ---'

@@ -1,0 +1,16 @@
+# Compiled build artifacts (Standard for many languages)
+/target/
+*.class
+
+# Operating System and Editor Files (e.g., macOS, Windows, common IDEs)
+.DS_Store
+Thumbs.db
+*.iml
+.vscode/
+
+# Dependency Directories
+/node_modules/
+/vendor/
+
+# Specific file you asked about (only keep this if you want to ignore it)
+TECHNICAL.md

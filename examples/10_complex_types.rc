@@ -1,0 +1,52 @@
+# File Version: 1.7.0
+# /examples/10_complex_types.rc
+# Execution: ./target/release/rustcript examples/10_complex_types.rc
+
+print '--- 10 COMPLEX TYPES ---'
+
+# 1. Tuples (...)
+person = ('John', 30, true)
+print 'Tuple: {person}'
+print 'Access Index 0: {person.0}'
+
+# Edit Tuple at Runtime
+person.1 = 31
+print 'Birthday! New Age: {person.1}'
+print 'Updated Tuple: {person}'
+
+# 2. Vectors {...}
+fruits = {'apple', 'banana', 'cherry'}
+print 'Vector: {fruits}'
+print 'Access Index 1: {fruits.1}'
+
+# Edit Vector at Runtime
+fruits.0 = 'apricot'
+print 'Updated Vector: {fruits}'
+
+# 3. HashMaps {key:val, ...}
+capitals = {'France': 'Paris', 'Japan': 'Tokyo'}
+print 'HashMap: {capitals}'
+print 'Capital of Japan: {capitals.Japan}'
+
+# Edit Map at Runtime
+capitals.Italy = 'Rome'
+print 'Added Italy: {capitals}'
+
+# 4. Nested Structures
+# formatting strictly to ensure parsing success
+nested = ('A',{'B1','B2'},{'key':'val'})
+print 'Nested: {nested}'
+
+# Access nested property
+# nested.1 is the Vector {'B1','B2'}
+# nested.1.0 is 'B1'
+val = nested.1.0
+print 'Access Nested Vector (nested.1.0): {val}'
+
+# Edit Nested
+# nested.2 is the Map {'key':'val'}
+# nested.2.key accesses 'val'
+nested.2.key = 'modified'
+print 'Modified Nested: {nested}'
+
+print '--- END ---'

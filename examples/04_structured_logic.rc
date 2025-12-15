@@ -1,0 +1,24 @@
+# File Version: 1.4.0
+# /examples/04_structured_logic.rc
+# Execution: ./target/release/rustcript examples/04_structured_logic.rc
+
+print '--- 04 STRUCTURED LOGIC ---'
+
+power_level = 9500
+
+if power_level > 9000 [
+    print 'Its over 9000!'
+
+    # Nested check
+    if power_level > 9900 [
+        print '  -> Its nearly 10,000!'
+    ] else [
+        print '  -> But not quite 10,000.'
+    ]
+] else_if power_level > 5000 [
+    print 'Its a decent power level.'
+] else [
+    print 'Power level is low.'
+]
+
+print '--- END ---'

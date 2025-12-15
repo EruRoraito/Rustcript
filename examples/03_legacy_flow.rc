@@ -1,0 +1,29 @@
+# File Version: 1.4.0
+# /examples/03_legacy_flow.rc
+# Execution: ./target/release/rustcript examples/03_legacy_flow.rc
+
+print '--- 03 LEGACY FLOW ---'
+
+counter = 0
+
+label start_loop
+    print 'Counter: {counter}'
+    counter += 1
+
+    # Assembly style IF
+    if counter < 3 start_loop
+
+print 'Loop finished.'
+
+# Subroutine Call
+print 'Calling subroutine...'
+call my_subroutine
+print 'Back from subroutine.'
+goto end
+
+label my_subroutine
+    print '>> Inside Subroutine'
+    return
+
+label end
+print '--- END ---'

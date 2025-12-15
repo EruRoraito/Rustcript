@@ -1,0 +1,25 @@
+# File Version: 1.1.0
+# /examples/19_modules_lib.rc
+
+# This code runs when imported.
+# Because it is imported with 'as Service', it runs inside the 'Service' namespace.
+
+print '>> [Lib] Initializing Service Module...'
+
+# 1. Global Variable
+# Inside the namespace, this becomes 'Service.STATUS'
+global STATUS = 'Ready'
+
+# 2. Module Function
+# Inside the namespace, this becomes 'Service.get_status'
+function get_status [
+    return STATUS
+]
+
+# 3. State Modifier
+function set_status new_state [
+    STATUS = new_state
+    print '>> [Lib] State updated to: {STATUS}'
+]
+
+print '>> [Lib] Initialization Complete.'

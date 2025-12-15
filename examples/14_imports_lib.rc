@@ -1,0 +1,19 @@
+# File Version: 1.4.0
+# /examples/14_imports_lib.rc
+# Execution: ./target/release/rustcript examples/14_imports_lib.rc
+
+
+# This code runs when the file is imported
+print '[LIB] >> Loading Library: 14_imports_lib.rc...'
+
+# 1. Define a Global Constant
+global MATH_PI = 3.14159
+
+# 2. Define a Helper Function
+function calculate_circle_area radius [
+    r_squared radius * radius
+    area MATH_PI * r_squared
+    return area
+]
+
+print '[LIB] >> Library Loaded Successfully.'

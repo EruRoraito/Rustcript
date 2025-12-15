@@ -1,0 +1,11 @@
+# File Version: 1.0.0
+# /tests/manual_debug.rc
+
+print='Line 4: This is fine.'
+print='Line 5: Still working...'
+
+# Line 7 is empty
+# Line 8 below will cause a Runtime Error (Division by Zero)
+val 10 / 0
+
+print='Line 10: This should not print.'

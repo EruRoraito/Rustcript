@@ -1,0 +1,62 @@
+# File Version: 1.5.0
+# /examples/15_datetime_vec_opt.rc
+# Execution: ./target/release/rustcript examples/15_datetime_vec_opt.rc
+
+print '--- 15 DATETIME & VECTOR OPS ---'
+
+# ==========================================
+# 1. CURRENT TIME COMMAND
+# ==========================================
+print '1. Getting Current Time Snapshot:'
+time now
+print 'Full DateTime: {now}'
+
+print 'Extraction (Date vs Time):'
+method d_str = now.date()
+method t_str = now.time()
+
+print 'Date Only: {d_str}'
+print 'Time Only: {t_str}'
+
+print 'Merging Manual String:'
+sep = ' | '
+# Merging Date + Sep
+part1 d_str + sep
+# Merging Result + Time
+full_merge part1 + t_str
+print 'Merged: {full_merge}'
+
+# ==========================================
+# 2. TIME ARITHMETIC
+# ==========================================
+print '2. Starting Timer...'
+time start_time
+
+print 'Waiting 50ms...'
+exec wait 50
+
+time end_time
+duration end_time - start_time
+print 'Duration: {duration} seconds'
+
+print 'Adding 1 minute to start_time...'
+future start_time + 60.0
+print 'Future Time: {future}'
+
+# ==========================================
+# 3. VECTOR OPS
+# ==========================================
+print '3. Vector Insert/Remove...'
+list = {'A', 'C', 'D'}
+print 'Initial: {list}'
+
+print 'Inserting \'B\' at index 1...'
+method list.insert(1, 'B')
+print 'After Insert: {list}'
+
+print 'Removing \'C\' (now at index 2)...'
+method val = list.remove(2)
+print 'Removed Value: {val}'
+print 'Final List: {list}'
+
+print '--- END ---'

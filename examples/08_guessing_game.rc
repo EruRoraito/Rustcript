@@ -1,0 +1,35 @@
+# File Version: 1.4.0
+# /examples/08_guessing_game.rc
+# Execution: ./target/release/rustcript examples/08_guessing_game.rc
+
+print '--- GUESS THE NUMBER ---'
+print 'I have picked a number (fixed at 42 for this demo).'
+print 'Try to guess it!'
+
+secret = 42
+attempts = 0
+running = true
+
+while running [
+    attempts += 1
+
+    print 'Enter your guess:'
+    input guess
+
+    if guess == secret [
+        print 'CORRECT! You found it in {attempts} attempts.'
+        running = false
+    ] else_if guess < secret [
+        print 'Too low! Try again.'
+    ] else [
+        print 'Too high! Try again.'
+    ]
+
+    # Safety break
+    if attempts >= 5 [
+        print 'Too many attempts! You lose.'
+        running = false
+    ]
+]
+
+print '--- GAME OVER ---'

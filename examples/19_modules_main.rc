@@ -1,0 +1,46 @@
+# File Version: 1.1.0
+# /examples/19_modules_main.rc
+# Execution: ./target/release/rustcript examples/19_modules_main.rc
+
+print '--- 19 MODULES SYSTEM ---'
+
+# 1. Import with Alias
+# This wraps the content of 19_modules_lib.rc into the 'Service' namespace
+print '1. Importing Library...'
+import '19_modules_lib.rc' as Service
+
+# 2. Variable Isolation
+print ' '
+print '2. Variable Isolation Check:'
+
+# Define a local variable with the SAME NAME as the library's variable
+STATUS = 'Main_Idle'
+print '   Main Scope STATUS:    {STATUS}'
+print '   Service Scope STATUS: {Service.STATUS}'
+
+if STATUS != Service.STATUS [
+    print '   >> PASS: Variables are isolated.'
+] else [
+    print '   >> FAIL: Variables collided.'
+]
+
+# 3. Direct Variable Access
+print ' '
+print '3. Modifying Namespace Variable directly:'
+Service.STATUS = 'Active'
+print '   Service.STATUS is now: {Service.STATUS}'
+print '   Main STATUS is still:  {STATUS}'
+
+# 4. Module Function Calls
+print ' '
+print '4. Calling Module Functions (Service.set_status):'
+
+# Calling a function defined in a namespace looks like a static method call
+# Syntax: Namespace.Function(Args)
+method Service.set_status('Overloaded')
+
+print '   Verifying change via getter (Service.get_status):'
+current = Service.get_status()
+print '   Result: {current}'
+
+print '--- END ---'

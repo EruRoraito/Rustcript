@@ -1,0 +1,76 @@
+# File Version: 1.1.0
+# /examples/24_first_class_funcs.rc
+# Execution: ./target/release/rustcript examples/24_first_class_funcs.rc
+
+print '--- 24 FIRST-CLASS FUNCTIONS ---'
+
+# 1. Basic Assignment
+print '1. Assigning Function to Variable...'
+
+function add a b [
+    res a + b
+    return res
+]
+
+function subtract a b [
+    res a - b
+    return res
+]
+
+# Assign 'add' function to 'math_op' variable
+math_op = add
+print '   math_op is now: {math_op}'
+
+# Call via variable
+result = math_op(10, 5)
+print '   math_op(10, 5) = {result}'
+
+# Reassign
+math_op = subtract
+print '   math_op is now: {math_op}'
+result = math_op(10, 5)
+print '   math_op(10, 5) = {result}'
+
+# 2. Passing Functions as Arguments
+print ' '
+print '2. Higher-Order Functions...'
+
+function process_numbers list op_func [
+    print '   Processing list with {op_func}...'
+    new_list = {}
+    foreach n in list [
+        # Call the passed function
+        val = op_func(n, 2)
+        method new_list.push(val)
+    ]
+    return new_list
+]
+
+data = {1, 2, 3, 4}
+print '   Data: {data}'
+
+# Pass 'add' (adds 2 to everything)
+res1 = process_numbers(data, add)
+print '   Result (Add 2): {res1}'
+
+# Pass 'subtract' (subtracts 2 from everything)
+res2 = process_numbers(data, subtract)
+print '   Result (Sub 2): {res2}'
+
+# 3. Functions in Data Structures
+print ' '
+print '3. Functions in Arrays/Maps...'
+
+# In Vector
+funcs = {add, subtract}
+op = funcs[0]
+res = op(100, 100)
+print '   funcs[0](100, 100) = {res}'
+
+# In Map
+api = {'sum': add, 'diff': subtract}
+op = api.diff
+res = op(50, 20)
+print '   api.diff(50, 20) = {res}'
+
+print '--- END ---'
